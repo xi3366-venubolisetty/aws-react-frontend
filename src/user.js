@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API ="https://aws-be-env.eba-ppktmvzs.ap-south-1.elasticbeanstalk.com/ceo"
+const API ="http://aws-be-env.eba-ppktmvzs.ap-south-1.elasticbeanstalk.com/ceo"
 function User() {
     const [formState, setFormState] = useState(null);
     const [userState, setUserState] = useState([
@@ -40,7 +40,9 @@ function User() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formState)
             };
+            console.log(requestOptions)
             const response = await fetch(API,requestOptions);
+            console.log(response)
             const data = await response.json();
             setUserState((preState)=>[...preState, {...formState}]);
             setFormState(null)
